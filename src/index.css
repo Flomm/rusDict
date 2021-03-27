@@ -1,13 +1,114 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button {
+  cursor: pointer;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: #16245e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.upper-holder {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  background-color: rgb(201, 214, 231);
+  padding: 2%;
+  border-color: rgb(250, 6, 6);
+  border-style: solid;
+  border-radius: 15px;
+}
+
+header {
+  width: 90%;
+  background-color: rgb(201, 214, 231);
+  text-align: center;
+  padding: 1%;
+  font-weight: bolder;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.upper-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  max-width: 80%;
+  outline: none;
+  margin-bottom: 2%;
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.key {
+  outline: none;
+  margin: 1%;
+  width: 8%;
+}
+
+.key._ {
+  flex-grow: 2;
+}
+
+.upper-right {
+  background-color: rgb(250, 6, 6);
+  box-shadow: 8px 8px 5px 0px rgba(50, 50, 50, 0.75);
+  padding: 1%;
+  width: 50%;
+  height: 75%;
+  border-radius: 15px;
+}
+
+footer {
+  text-align: center;
+  width: 100%;
+  background-color: rgb(201, 214, 231);
+  padding: 1%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  font-weight: bolder;
 }
