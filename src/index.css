@@ -27,8 +27,7 @@ button {
   justify-content: center;
 }
 
-.upper-holder {
-  width: 100%;
+.holder {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,7 +36,7 @@ button {
   padding: 2%;
   border-color: rgb(250, 6, 6);
   border-style: solid;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
 header {
@@ -54,6 +53,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 30%;
 }
 
 .input-holder {
@@ -80,14 +80,14 @@ input {
 .keyboard {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
 .key {
   outline: none;
   margin: 1%;
-  width: 8%;
+  width: 25px;
 }
 
 .key._ {
@@ -101,6 +101,113 @@ input {
   width: 50%;
   height: 75%;
   border-radius: 15px;
+}
+
+.toggle-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.switch {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(to bottom, red 33.3%, white 33.3%, white 66.6%, green 66.6%);
+  border-radius: 2px;
+  transition: 1s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-image: linear-gradient(to bottom, white 33.3%, blue 33.3%, blue 66.6%, red 66.6%);
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+}
+
+input:checked + .slider {
+  background-image: linear-gradient(to bottom, white 33.3%, blue 33.3%, blue 66.6%, red 66.6%);
+}
+
+input:checked + .slider:before {
+  background-image: linear-gradient(to bottom, red 33.3%, white 33.3%, white 66.6%, green 66.6%);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #041c30;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.toggle-holder label {
+  font-weight: bolder;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.lower.main {
+  height: 45%;
+}
+
+.lower.holder {
+  justify-content: center;
+}
+
+.lower-parts {
+  height: 100%;
+  width: 45%;
+  display: flex;
+  justify-content: center;
+}
+
+article {
+  border-radius: 2px;
+  padding: 1%;
+  height: 100%;
+  width: 90%;
+  background-color: #16245e;
+}
+
+article h4 {
+  text-align: center;
+  padding: 1%;
+  background-color: rgb(201, 214, 231);
+  border-radius: 2px;
+}
+
+article p {
+  margin: 1%;
+  padding: 1%;
+  background-color: rgb(201, 214, 231);
+  border-radius: 2px;
 }
 
 footer {
