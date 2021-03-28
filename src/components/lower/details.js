@@ -7,6 +7,12 @@ export class DetailsArticle extends React.Component {
     if (this.props.data[0] === '<') {
       const withOutStyle = parse(this.props.data);
       dataDiv = <div className="table-div">{withOutStyle}</div>;
+    } else if (this.props.data.slice(0, 3) === 'Hop') {
+      dataDiv = (
+        <div className="table-div">
+          <p>{this.props.data}</p>
+        </div>
+      );
     }
     return dataDiv;
   }
