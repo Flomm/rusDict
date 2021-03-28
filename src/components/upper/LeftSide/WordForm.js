@@ -1,15 +1,17 @@
-import React from "react";
-import Keyboard from "./Keyboard";
+import React from 'react';
+import Keyboard from './Keyboard';
 
 export default class WordForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
+      value: '',
+      pair: this.props.pair,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleType = this.handleType.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.inputRef = React.createRef();
   }
 
   handleChange(event) {
@@ -25,11 +27,20 @@ export default class WordForm extends React.Component {
     this.setState({ value: newVal });
   }
 
+  componentDidUpdate() {
+    this._input.focus();
+  }
   render() {
     return (
       <div className="input-holder">
-        <form>
+        <form
+          onSubmit={(ev) => {
+            this.props.onsubmit(ev);
+            this.setState({ value: '' });
+          }}
+        >
           <input
+            ref={(c) => (this._input = c)}
             value={this.state.value}
             onChange={this.handleChange}
             type="text"
