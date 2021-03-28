@@ -6,10 +6,10 @@ export const Lower = (props) => {
     <div className="lower main">
       <div className="lower holder">
         <div className="lower-parts">
-          <ResultsArticle word={props.qWord} />
+          <ResultsArticle word={props.qWord} handleClick={props.handleClick} />
         </div>
         <div className="lower-parts">
-          <DetailsArticle />
+          <DetailsArticle data={props.data} />
         </div>
       </div>
     </div>
