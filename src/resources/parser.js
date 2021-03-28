@@ -2,7 +2,12 @@ export function parseHTML(htmlText) {
   const html = htmlText;
   const startIndex = html.indexOf('id="Russian">Russian</h2>');
   const rusSection = html.slice(startIndex);
-  const declIndex = rusSection.indexOf('id="Declension');
+  let declIndex;
+  if (rusSection.indexOf('id="Declension') !== -1) {
+    declIndex = rusSection.indexOf('id="Declension');
+  } else {
+    declIndex = rusSection.indexOf('id="Conjugation"');
+  }
   const declension = rusSection.slice(declIndex);
   const tableIndex = declension.indexOf('<table');
   const startTable = declension.slice(tableIndex);
@@ -13,5 +18,7 @@ export function parseHTML(htmlText) {
   const withOutEndLinks = withOutLinks.replaceAll('</a>', '');
   const withOutBreaks = withOutEndLinks.replaceAll('<br/>', '');
   const withOutClasses = withOutBreaks.replace(/(<[^>]+) class=".*?[^>]*/gi, '$1');
-  return withOutClasses;
+  const withOutCaption = withOutClasses.replace(/<caption.*?<\/caption>/g, '');
+  const withOutTriangle = withOutCaption.replaceAll('△', '');
+  return withOutTriangle;
 }

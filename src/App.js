@@ -18,13 +18,14 @@ export const App = () => {
   function handleClick(ev) {
     const selectedWord = ev.target.innerText;
     fetch(`https://en.wiktionary.org/api/rest_v1/page/html/${selectedWord}`)
-      .then((response) => {
-        if (response.status < 200 || response.status > 300) {
-          throw new Error('Hopsz, úgy tűnik ez a szó nem található, vagy probléma van a Wikipédia szerverrel.');
-        } else {
-          response.text();
-        }
-      })
+      .then(
+        (response) =>
+          // if (response.status < 200 || response.status > 300) {
+          //   throw new Error('Hopsz, úgy tűnik ez a szó nem található, vagy probléma van a Wikipédia szerverrel.');
+          // } else {
+          response.text()
+        // }
+      )
       .then((data) => {
         const table = parseHTML(data);
         setTable(table);
