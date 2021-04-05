@@ -1,3 +1,6 @@
+import { replaceAll } from './replaceObject';
+import { replaceObject } from './replaceObject';
+
 export function parseHTML(htmlText) {
   const html = htmlText;
   const startIndex = html.indexOf('id="Russian">Russian</h2>');
@@ -20,5 +23,10 @@ export function parseHTML(htmlText) {
   const withOutClasses = withOutBreaks.replace(/(<[^>]+) class=".*?[^>]*/gi, '$1');
   const withOutCaption = withOutClasses.replace(/<caption.*?<\/caption>/g, '');
   const withOutTriangle = withOutCaption.replaceAll('△', '');
-  return withOutTriangle;
+  const withOutIndex = withOutTriangle.replace(/<sup>.*?<\/sup>/g, '');
+  const withOutParens = withOutIndex.replace(/\(.*?\)/g, '');
+  const withOutEnd = withOutParens.replace(/<li>.*?<\/li>/g, '');
+  const withOutWhiteSpace = withOutEnd.replace(/^\s*\n/gm, '');
+  const hunVers = replaceAll(withOutWhiteSpace, replaceObject);
+  return hunVers;
 }
