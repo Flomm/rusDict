@@ -39,7 +39,7 @@ export const replaceObject = {
   '<span>f</abbr>': '<span>n</abbr>',
 };
 
-export function replaceAll(str, replaceObject) {
+export function replaceEngWords(str, replaceObject) {
   var reg = new RegExp(Object.keys(replaceObject).join('|'), 'gi');
 
   return str.replace(reg, (matched) => {

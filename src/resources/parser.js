@@ -1,4 +1,4 @@
-import { replaceAll } from './replaceObject';
+import { replaceEngWords } from './replaceObject';
 import { replaceObject } from './replaceObject';
 
 export function parseHTML(htmlText) {
@@ -27,6 +27,6 @@ export function parseHTML(htmlText) {
   const withOutParens = withOutIndex.replace(/\(.*?\)/g, '');
   const withOutEnd = withOutParens.replace(/<li>.*?<\/li>/g, '');
   const withOutWhiteSpace = withOutEnd.replace(/^\s*\n/gm, '');
-  const hunVers = replaceAll(withOutWhiteSpace, replaceObject);
+  const hunVers = replaceEngWords(withOutWhiteSpace, replaceObject);
   return hunVers;
 }
