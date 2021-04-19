@@ -199,6 +199,7 @@ article div {
   background-color: var(--lightblue);
   text-align: center;
   padding: 1%;
+  border-radius: 2px;
 }
 
 .lower-parts:nth-child(1) article {
