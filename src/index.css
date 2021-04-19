@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
+:root {
+  --lightblue: rgb(201, 214, 231);
+  --navyblue: #16245e;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -13,7 +18,7 @@ button {
 
 header {
   width: 90%;
-  background-color: rgb(201, 214, 231);
+  background-color: var(--lightblue);
   text-align: center;
   padding: 1%;
   font-weight: bolder;
@@ -23,7 +28,7 @@ header {
 
 .wrapper {
   width: 100%;
-  background-color: #16245e;
+  background-color: var(--navyblue);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,7 +45,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(201, 214, 231);
+  background-color: var(--lightblue);
   padding: 2%;
   margin: 4%;
   border-color: rgb(250, 6, 6);
@@ -187,7 +192,13 @@ input:checked + .slider:before {
 article {
   border-radius: 2px;
   padding: 2%;
-  background-color: #16245e;
+  background-color: var(--navyblue);
+}
+
+article div {
+  background-color: var(--lightblue);
+  text-align: center;
+  padding: 1%;
 }
 
 .lower-parts:nth-child(1) article {
@@ -198,22 +209,22 @@ article h4 {
   text-align: center;
   padding: 1%;
   margin-bottom: 2%;
-  background-color: rgb(201, 214, 231);
+  background-color: var(--lightblue);
   border-radius: 2px;
 }
 
-article p {
+article li {
   cursor: pointer;
   margin: 1%;
   padding: 1%;
-  background-color: rgb(201, 214, 231);
+  background-color: var(--lightblue);
   border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-article p:active {
+article li:active {
   transition: 0.5s ease;
   background-color: rgba(50, 50, 50, 0.75);
 }
@@ -225,15 +236,15 @@ article p:active {
 }
 
 table {
-  background-color: rgb(201, 214, 231);
+  background-color: var(--lightblue);
   display: flex;
   flex-wrap: wrap;
   margin: 4%;
 }
 
 th {
-  color: rgb(201, 214, 231);
-  background-color: #16245e;
+  color: var(--lightblue);
+  background-color: var(--navyblue);
   padding: 1%;
   border-radius: 2px;
   border-left: 1.5px solid rgb(250, 6, 6);
@@ -251,6 +262,6 @@ footer {
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: rgb(201, 214, 231);
+  background-color: var(--lightblue);
   font-weight: bolder;
 }
