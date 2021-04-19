@@ -8,25 +8,29 @@ export function parseHTML(htmlText) {
   let declIndex;
   if (rusSection.indexOf('id="Declension') !== -1) {
     declIndex = rusSection.indexOf('id="Declension');
-  } else {
+  } else if (rusSection.indexOf('id="Conjugation') !== -1) {
     declIndex = rusSection.indexOf('id="Conjugation"');
+  } else {
+    return 'Hopsz, ehhez a szóhoz nem tartozik táblázat az angol nyelvű Wikiszótáron.';
   }
   const declension = rusSection.slice(declIndex);
   const tableIndex = declension.indexOf('<table');
   const startTable = declension.slice(tableIndex);
   const fullTable = startTable.slice(0, startTable.indexOf('</table>') + 8);
-  const withOutStyle = fullTable.replace(/(<[^>]+) style=".*?"/gi, '$1');
-  const withOutLatin = withOutStyle.replace(/<span lang="ru-Latn".*?<\/span>/g, '');
-  const withOutLinks = withOutLatin.replace(/<a.*?>/g, '');
+  const withOutStyle = fullTable.replaceAll(/(<[^>]+) style=".*?"/gi, '$1');
+  const withOutLatin = withOutStyle.replaceAll(/<span lang="ru-Latn".*?<\/span>/g, '');
+  const withOutLinks = withOutLatin.replaceAll(/<a.*?>/g, '');
   const withOutEndLinks = withOutLinks.replaceAll('</a>', '');
   const withOutBreaks = withOutEndLinks.replaceAll('<br/>', '');
-  const withOutClasses = withOutBreaks.replace(/(<[^>]+) class=".*?[^>]*/gi, '$1');
-  const withOutCaption = withOutClasses.replace(/<caption.*?<\/caption>/g, '');
+  const withOutClasses = withOutBreaks.replaceAll(/(<[^>]+) class=".*?[^>]*/gi, '$1');
+  const withOutCaption = withOutClasses.replaceAll(/<caption.*?<\/caption>/g, '');
   const withOutTriangle = withOutCaption.replaceAll('△', '');
-  const withOutIndex = withOutTriangle.replace(/<sup>.*?<\/sup>/g, '');
-  const withOutParens = withOutIndex.replace(/\(.*?\)/g, '');
-  const withOutEnd = withOutParens.replace(/<li>.*?<\/li>/g, '');
-  const withOutWhiteSpace = withOutEnd.replace(/^\s*\n/gm, '');
+  const withOutIndex = withOutTriangle.replaceAll(/<sup>.*?<\/sup>/g, '');
+  const withOutParens = withOutIndex.replaceAll(/\(.*?\)/g, '');
+  const withOutEnd = withOutParens.replaceAll(/<li>.*?<\/li>/g, '');
+  const withOutStrong = withOutEnd.replaceAll('<strong>', '');
+  const withOutStrongEnd = withOutStrong.replaceAll('</strong>', '');
+  const withOutWhiteSpace = withOutStrongEnd.replaceAll(/^\s*\n/gm, '');
   const hunVers = replaceEngWords(withOutWhiteSpace, replaceObject);
   return hunVers;
 }
