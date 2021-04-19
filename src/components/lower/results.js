@@ -4,18 +4,18 @@ export default class ResultsArticle extends React.Component {
   renderResults(words) {
     return words.map((word, i) => {
       return (
-        <p key={`key${i}`} onClick={this.props.handleClick}>
+        <li key={`key${i}`} onClick={this.props.handleClick}>
           {word}
-        </p>
+        </li>
       );
     });
   }
 
   render() {
-    let resultDiv = <div></div>;
+    let resultDiv = <ul></ul>;
     if (this.props.word[0] !== '') {
       const results = this.renderResults(this.props.word);
-      resultDiv = <div>{results}</div>;
+      resultDiv = <ul>{results}</ul>;
     }
     return (
       <article>
