@@ -5,6 +5,7 @@ export const replaceObject = {
   accusative: 'tárgyeset',
   instrumental: 'eszközhat. eset',
   prepositional: 'elöljárós eset',
+  locative: 'helyhatár. eset',
   vocative: 'megszólító eset',
   '1st singular': 'E/1',
   '2nd singular': 'E/2',
