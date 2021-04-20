@@ -2,7 +2,7 @@ export const replaceObject = {
   nominative: 'alanyeset',
   genitive: 'birtokos eset',
   dative: 'részeshat. eset',
-  accusative: 'tágyeset',
+  accusative: 'tárgyeset',
   instrumental: 'eszközhat. eset',
   prepositional: 'elöljárós eset',
   vocative: 'megszólító eset',
