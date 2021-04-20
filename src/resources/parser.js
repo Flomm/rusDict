@@ -30,7 +30,7 @@ export function parseHTML(htmlText) {
   const withOutEnd = withOutParens.replaceAll(/<li>.*?<\/li>/g, '');
   const withOutStrong = withOutEnd.replaceAll('<strong>', '');
   const withOutStrongEnd = withOutStrong.replaceAll('</strong>', '');
-  const withOutWhiteSpace = withOutStrongEnd.replaceAll(/^\s*\n/gm, '');
+  const withOutWhiteSpace = withOutStrongEnd.replaceAll(/\r?\n|\r/g, '');
   const hunVers = replaceEngWords(withOutWhiteSpace, replaceObject);
   return hunVers;
 }
