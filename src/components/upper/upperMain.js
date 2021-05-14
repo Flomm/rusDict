@@ -13,7 +13,7 @@ export const Upper = (props) => {
   }
 
   return (
-    <div className="upper main">
+    <div className="main upper">
       <div className="upper holder">
         <div className="upper-left">
           <WordForm pair={pair} onsubmit={props.onsubmit} />

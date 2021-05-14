@@ -38,7 +38,7 @@ export const App = () => {
   function renderTable() {
     if (table) {
       return (
-        <div className="lower holder details">
+        <div className="details">
           <div className="table-main">
             <button onClick={escTable}>X</button>
             <DetailsArticle data={table} />
@@ -54,7 +54,7 @@ export const App = () => {
   }
 
   return (
-    <div>
+    <div className="bg">
       {renderTable()}
       <div className={`wrapper ${shadiness}`}>
         <header>Orosz-magyar, magyar-orosz szótár</header>
