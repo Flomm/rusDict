@@ -55,7 +55,11 @@ header {
   width: 90%;
   display: flex;
   justify-content: center;
-  height: 40%;
+  height: 30%;
+}
+
+.main.lower {
+  height: 50%;
 }
 
 .holder {
@@ -63,9 +67,10 @@ header {
   justify-content: center;
   align-items: center;
   background-color: var(--lightblue);
-  padding: 2%;
+  padding: 1%;
   width: 100%;
   border: 5px solid var(--reddy);
+  border-radius: 5px;
 }
 
 .upper-left {
@@ -197,13 +202,18 @@ input:checked + .slider:before {
   display: flex;
   justify-content: center;
   width: 90%;
-  height: 90%;
+  height: 100%;
 }
 
 article {
   border-radius: 2px;
-  padding: 2%;
+  padding: 0% 0% 2% 0%;
   background-color: var(--navyblue);
+}
+
+article > ul {
+  display: flex;
+  justify-content: center;
 }
 
 article div {
@@ -217,16 +227,19 @@ article div {
   width: 100%;
 }
 
-article h4 {
+article h4,
+.table-div h4 {
   text-align: center;
-  padding: 1%;
-  margin-bottom: 2%;
+  border-bottom: 1px solid var(--reddy);
+  padding: 0% 1% 1% 1%;
+  margin-bottom: 1%;
   background-color: var(--lightblue);
   border-radius: 2px;
 }
 
 article li {
   cursor: pointer;
+  width: 50%;
   margin: 1%;
   padding: 1%;
   background-color: var(--lightblue);
@@ -248,8 +261,16 @@ article li:active {
   padding: 1%;
   top: 50%;
   left: 50%;
+  min-height: 30%;
+  min-width: 30%;
+  max-height: 80%;
   transform: translate(-50%, -50%);
-  background-color: var(--lightblue);
+  background-color: var(--navyblue);
+  border: 2px solid var(--reddy);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .table-main {
@@ -257,10 +278,13 @@ article li:active {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-height: 100%;
+  max-width: 100%;
 }
 
-.table-main button {
+.details button {
   align-self: flex-end;
+  justify-self: flex-start;
   font-weight: bolder;
   background-color: transparent;
   color: var(--reddy);
@@ -269,8 +293,8 @@ article li:active {
   outline: none;
 }
 
-.table-main button:hover {
-  color: var(--navyblue);
+.details button:hover {
+  color: var(--lightblue);
 }
 
 .table-main button:active {
@@ -281,6 +305,7 @@ article li:active {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   padding: 2%;
 }
 
@@ -297,7 +322,6 @@ table * {
 th {
   color: var(--lightblue);
   background-color: var(--navyblue);
-  padding: 1%;
   border-radius: 2px;
   border-left: 1.5px solid var(--reddy);
   border-right: 1.5px solid var(--reddy);

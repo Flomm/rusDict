@@ -39,10 +39,8 @@ export const App = () => {
     if (table) {
       return (
         <div className="details">
-          <div className="table-main">
-            <button onClick={escTable}>X</button>
-            <DetailsArticle data={table} />
-          </div>
+          <button onClick={escTable}>X</button>
+          <DetailsArticle data={table} />
         </div>
       );
     }
