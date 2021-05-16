@@ -19,7 +19,17 @@ export default class ResultsArticle extends React.Component {
     }
     return (
       <article>
-        <h4>Találatok</h4>
+        <div className="results-div">
+          <h3>Találatok</h3>
+          <div className="label-div">
+            <label>Limit:</label>
+            <select>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+        </div>
         {resultDiv}
       </article>
     );

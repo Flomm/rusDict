@@ -1,7 +1,7 @@
 export const InfoPart = () => {
   return (
     <div className="info">
-      <h4>Jelmagyarázat</h4>
+      <h5>Jelmagyarázat</h5>
     </div>
   );
 };
