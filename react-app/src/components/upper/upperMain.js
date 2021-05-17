@@ -6,7 +6,7 @@ import { Switch } from './middle';
 
 export const Upper = (props) => {
   const [pair, setPair] = useState('RUS-HU');
-  const [dispatch] = useGlobState();
+  const [state, dispatch] = useGlobState();
 
   function handleChange() {
     let newPair = '';

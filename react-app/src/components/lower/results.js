@@ -2,7 +2,7 @@ import React from 'react';
 import { useGlobState } from '../context';
 
 export const ResultsArticle = (props) => {
-  const [dispatch] = useGlobState();
+  const [state, dispatch] = useGlobState();
   function renderResults(words) {
     return words.map((word, i) => {
       return (
