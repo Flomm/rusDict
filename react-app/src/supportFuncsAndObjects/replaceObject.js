@@ -40,11 +40,3 @@ export const replaceObject = {
   '<span>n</abbr>': '<span>s</abbr>',
   '<span>f</abbr>': '<span>n</abbr>',
 };
-
-export function replaceEngWords(str, replaceObject) {
-  var reg = new RegExp(Object.keys(replaceObject).join('|'), 'gi');
-
-  return str.replace(reg, (matched) => {
-    return replaceObject[matched.toLowerCase()];
-  });
-}

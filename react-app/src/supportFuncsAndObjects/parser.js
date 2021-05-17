@@ -1,4 +1,4 @@
-import { replaceEngWords } from './replaceObject';
+import replaceEngWords from './replaceEngWords';
 import { replaceObject } from './replaceObject';
 
 export function parseHTML(htmlText) {
