@@ -45,6 +45,7 @@ export default class WordForm extends React.Component {
             onChange={this.handleChange}
             type="text"
             placeholder="Adj meg egy szót"
+            required
           ></input>
           <button>Keresés</button>
         </form>
