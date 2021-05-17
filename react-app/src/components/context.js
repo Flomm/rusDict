@@ -5,13 +5,14 @@ const defaultGlobalState = {
   lim: 5,
 };
 
-const globalStateContext = React.createContext(defaultGlobalState);
+export const globalStateContext = React.createContext(defaultGlobalState);
 const dispatchStateContext = React.createContext(null);
 
 export const useGlobState = () => [React.useContext(globalStateContext), React.useContext(dispatchStateContext)];
 
 export const GlobState = ({ children }) => {
   const [state, dispatch] = React.useReducer((state, newVal) => ({ ...state, ...newVal }), defaultGlobalState);
+  console.log(state);
   return (
     <globalStateContext.Provider value={state}>
       <dispatchStateContext.Provider value={dispatch}>{children}</dispatchStateContext.Provider>

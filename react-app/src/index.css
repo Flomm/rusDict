@@ -284,7 +284,7 @@ article li:active {
   left: 50%;
   min-height: 50%;
   min-width: 50%;
-  max-height: 100%;
+  max-height: 98%;
   max-width: 100%;
   transform: translate(-50%, -50%);
   background-color: var(--navyblue);

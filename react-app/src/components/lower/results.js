@@ -16,7 +16,6 @@ export const ResultsArticle = (props) => {
   function renderList() {
     let resultList = <ul></ul>;
     if (props.word[0] !== '') {
-      // const results = renderResults(props.word);
       resultList = <ul>{renderResults(props.word)}</ul>;
     }
     return resultList;
