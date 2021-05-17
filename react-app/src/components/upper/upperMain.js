@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import WordForm from './LeftSide/WordForm';
-import { InfoPart } from './RightSide';
+// import { InfoPart } from './RightSide';
+import { useGlobState } from '../context';
 import { Switch } from './middle';
 
 export const Upper = (props) => {
-  const [pair, setPair] = useState('orosz-magyar');
+  const [pair, setPair] = useState('RUS-HU');
+  const [dispatch] = useGlobState();
 
   function handleChange() {
     let newPair = '';
-    pair === 'orosz-magyar' ? (newPair = 'magyar-orosz') : (newPair = 'orosz-magyar');
+    pair === 'RUS-HU' ? (newPair = 'HU-RUS') : (newPair = 'RUS-HU');
     setPair(newPair);
+    dispatch({ lang: newPair });
   }
 
   return (
@@ -21,9 +24,9 @@ export const Upper = (props) => {
         <div>
           <Switch pair={pair} handleChange={handleChange} />
         </div>
-        <div className="upper-right">
+        {/* <div className="upper-right">
           <InfoPart />
-        </div>
+        </div> */}
       </div>
     </div>
   );
