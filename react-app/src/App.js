@@ -1,9 +1,10 @@
 import React from 'react';
+import { GlobState } from './components/context';
 import { Upper } from './components/upper/upperMain';
 import { Lower } from './components/lower/lowerMain';
 import { DetailsArticle } from './components/lower/details';
 import { useState } from 'react';
-import { parseHTML } from './resources/parser';
+import { parseHTML } from './supportFuncsAndObjects/parser';
 
 export const App = () => {
   const [queryWord, setQueryWord] = useState('');
@@ -52,14 +53,16 @@ export const App = () => {
   }
 
   return (
-    <div className="bg">
-      {renderTable()}
-      <div className={`wrapper ${shadiness}`}>
-        <header>Orosz-magyar, magyar-orosz szótár</header>
-        <Upper onsubmit={handleSubmit} />
-        <Lower qWord={[queryWord]} data={table} handleClick={handleClick} />
-        <footer>Some random text</footer>
+    <GlobState>
+      <div className="bg">
+        {renderTable()}
+        <div className={`wrapper ${shadiness}`}>
+          <header>Orosz-magyar, magyar-orosz szótár</header>
+          <Upper onsubmit={handleSubmit} />
+          <Lower qWord={[queryWord]} data={table} handleClick={handleClick} />
+          <footer>Some random text</footer>
+        </div>
       </div>
-    </div>
+    </GlobState>
   );
 };
