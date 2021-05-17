@@ -1,4 +1,4 @@
-import ResultsArticle from './results';
+import { ResultsArticle } from './results';
 
 export const Lower = (props) => {
   return (
