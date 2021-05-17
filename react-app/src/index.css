@@ -75,9 +75,9 @@ header {
 
 .upper-left {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
-  max-width: 30%;
+  /* max-width: 100%; */
 }
 
 .input-holder {
@@ -86,6 +86,7 @@ header {
   justify-content: center;
   align-items: center;
   margin: 1%;
+  max-width: 75%;
 }
 
 form {
@@ -360,4 +361,18 @@ footer {
   width: 100%;
   background-color: var(--lightblue);
   font-weight: bolder;
+}
+
+@media screen and (max-width: 1080px) {
+  footer {
+    display: none;
+  }
+
+  .key {
+    width: 15px;
+  }
+
+  .upper-right {
+    display: none;
+  }
 }
