@@ -16,7 +16,6 @@ export const Wrapper = () => {
     ev.preventDefault();
     const newWord = ev.target.elements[0].value;
     const queryObject = { word: newWord, ...queryDetails };
-    console.log(queryObject);
     setQueryWord(newWord);
   }
 
@@ -55,7 +54,6 @@ export const Wrapper = () => {
   }
 
   return (
-    // <GlobState>
     <div className="bg">
       {renderTable()}
       <div className={`wrapper ${shadiness}`}>
@@ -65,6 +63,5 @@ export const Wrapper = () => {
         <footer>Some random text</footer>
       </div>
     </div>
-    // </GlobState>
   );
 };

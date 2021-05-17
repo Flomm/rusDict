@@ -12,7 +12,6 @@ export const useGlobState = () => [React.useContext(globalStateContext), React.u
 
 export const GlobState = ({ children }) => {
   const [state, dispatch] = React.useReducer((state, newVal) => ({ ...state, ...newVal }), defaultGlobalState);
-  console.log(state);
   return (
     <globalStateContext.Provider value={state}>
       <dispatchStateContext.Provider value={dispatch}>{children}</dispatchStateContext.Provider>
