@@ -23,31 +23,26 @@ export const Wrapper = () => {
       const parsed = await response.json();
       if (!response.ok) {
         throw new Error(parsed.error);
-      } else {
-        setCallResult(parsed.result);
       }
+      setCallResult(parsed.result);
     } catch (err) {
-      console.log(err);
       setCallResult([{ message: err.message }]);
     }
   }
 
-  function handleResClick(ev) {
-    const selectedWord = ev.target.innerText;
-    fetch(`https://en.wiktionary.org/api/rest_v1/page/html/${selectedWord}`)
-      .then((response) => {
-        if (response.status < 200 || response.status > 300) {
-          throw new Error('Hopsz, úgy tűnik ez a szó nem található, vagy probléma van a Wikipédia szerverrel.');
-        } else {
-          return response.text();
-        }
-      })
-      .then((data) => {
-        const newTable = parseHTML(data);
-        setTable(newTable);
-        setShadiness('shady');
-      })
-      .catch((err) => setTable(err.message));
+  async function handleResClick(word) {
+    try {
+      const response = await fetch(`https://en.wiktionary.org/api/rest_v1/page/html/${word}`);
+      const parsed = await response.text();
+      if (!response.ok) {
+        throw new Error('Hopsz, úgy tűnik ez a szó nem található, vagy probléma van a Wikipédia szerverrel.');
+      }
+      const newTable = parseHTML(parsed);
+      setTable(newTable);
+      setShadiness('shady');
+    } catch (err) {
+      setTable(err.message);
+    }
   }
 
   function renderTable() {

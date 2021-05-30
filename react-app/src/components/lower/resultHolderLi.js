@@ -1,6 +1,11 @@
 export const ResultHolderLi = (props) => {
   return (
-    <li key={props.key} data={props.data} onClick={props.handleClick}>
+    <li
+      data={props.data}
+      onClick={() => {
+        props.handleClick(props.data.RU);
+      }}
+    >
       <p>
         <span>
           <strong>{props.data.RU}</strong>
