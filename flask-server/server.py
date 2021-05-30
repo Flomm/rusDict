@@ -1,8 +1,10 @@
 import os
 import pymongo
-from flask import Flask, render_template, make_response
+from flask import Flask, render_template, make_response, json
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 client = pymongo.MongoClient(os.environ.get('dict_mongo_read'))
 cluster = client['dict']
 
@@ -44,13 +46,6 @@ def handle_exception():
     return response, 500
 
 
-# @app.after_request
-# def after_request_func(data):
-#     response = make_response(data)
-#     response.headers['Content-Type'] = 'application/json'
-#     return response
-
-
 @app.route('/')
 def index():
     return render_template("index.html", flask_token="Hello world")
@@ -61,12 +56,13 @@ def getRU(word, limit):
     if not are_params_okay(word, limit):
         raise APIError(
             'Hopsz. Úgy tűnik rossz paramétereket adtál meg. Próbáld újra.')
-    response = list(cluster.RU.find(
+    result = list(cluster.RU.find(
         {'RU': {'$regex': f'.*{word}.*'}}, {'_id': 0}).limit(int(limit)))
-    if len(response) < 1:
+    if len(result) < 1:
         raise APIError(
             'Hopsz. Sajnos ez a szó még nem szerepel az adatbázisunkban, vagy nem létezik.')
-    return {'result': response}
+    response = json.jsonify({'result': result})
+    return response
 
 
 @app.route('/api/HU/<word>/<limit>')
