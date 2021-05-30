@@ -5,7 +5,7 @@ export const Lower = (props) => {
     <div className="main lower">
       <div className="lower holder">
         <div className="lower-parts">
-          <ResultsArticle word={props.qWord} handleClick={props.handleClick} />
+          <ResultsArticle callResult={props.callResult} handleClick={props.handleClick} />
         </div>
       </div>
     </div>

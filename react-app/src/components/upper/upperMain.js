@@ -15,6 +15,10 @@ export const Upper = (props) => {
     dispatch({ lang: newPair });
   }
 
+  if (state.error) {
+    dispatch({ lang: 'error' });
+  }
+
   return (
     <div className="main upper">
       <div className="upper holder">

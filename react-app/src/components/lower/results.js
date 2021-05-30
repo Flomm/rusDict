@@ -3,26 +3,33 @@ import { useGlobState } from '../context';
 
 export const ResultsArticle = (props) => {
   const [state, dispatch] = useGlobState();
-  function renderResults(words) {
-    return words.map((word, i) => {
+  function renderResults(results) {
+    return results.map((result, i) => {
+      if (result.message) {
+        return <div key={`key${i}`}>{result.message}</div>;
+      }
       return (
         <li key={`key${i}`} onClick={props.handleClick}>
-          {word}
+          {result.RU}
         </li>
       );
     });
   }
 
   function renderList() {
-    let resultList = <ul></ul>;
-    if (props.word[0] !== '') {
-      resultList = <ul>{renderResults(props.word)}</ul>;
+    if (props.callResult.length) {
+      let resultList = <ul></ul>;
+      resultList = <ul>{renderResults(props.callResult)}</ul>;
+      return resultList;
     }
-    return resultList;
   }
 
   function handleSelect(val) {
     dispatch({ lim: val });
+  }
+
+  if (state.error) {
+    dispatch({ lim: 0 });
   }
 
   return (
