@@ -7,16 +7,29 @@ import { useState, useContext } from 'react';
 import { parseHTML } from '../supportFuncsAndObjects/parser';
 
 export const Wrapper = () => {
-  const [queryWord, setQueryWord] = useState('');
+  const [callResult, setCallResult] = useState([]);
   const [table, setTable] = useState('');
   const [shadiness, setShadiness] = useState('');
   const queryDetails = useContext(globalStateContext);
 
-  function handleSubmit(ev) {
-    ev.preventDefault();
-    const newWord = ev.target.elements[0].value;
-    const queryObject = { word: newWord, ...queryDetails };
-    setQueryWord(newWord);
+  async function handleSubmit(ev) {
+    try {
+      ev.preventDefault();
+      const newWord = ev.target.elements[0].value;
+      const queryObject = { word: newWord, ...queryDetails };
+      const response = await fetch(
+        `http://127.0.0.1:5000/api/${queryObject.lang.slice(0, 2)}/${queryObject.word}/${queryObject.lim}`
+      );
+      const parsed = await response.json();
+      if (!response.ok) {
+        throw new Error(parsed.error);
+      } else {
+        setCallResult(parsed.result);
+      }
+    } catch (err) {
+      console.log(err);
+      setCallResult([{ message: err.message }]);
+    }
   }
 
   function handleResClick(ev) {
@@ -59,7 +72,7 @@ export const Wrapper = () => {
       <div className={`wrapper ${shadiness}`}>
         <header>Orosz-magyar, magyar-orosz szótár</header>
         <Upper onsubmit={handleSubmit} />
-        <Lower qWord={[queryWord]} data={table} handleClick={handleResClick} />
+        <Lower callResult={callResult} data={table} handleClick={handleResClick} />
         <footer>Some random text</footer>
       </div>
     </div>
