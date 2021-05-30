@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGlobState } from '../context';
+import { ResultHolderLi } from './resultHolderLi';
 
 export const ResultsArticle = (props) => {
   const [state, dispatch] = useGlobState();
@@ -8,11 +9,7 @@ export const ResultsArticle = (props) => {
       if (result.message) {
         return <div key={`key${i}`}>{result.message}</div>;
       }
-      return (
-        <li key={`key${i}`} onClick={props.handleClick}>
-          {result.RU}
-        </li>
-      );
+      return <ResultHolderLi key={`key${i}`} handleClick={props.handleClick} data={result}></ResultHolderLi>;
     });
   }
 
