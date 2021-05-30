@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-:root {
-  --lightblue: rgb(201, 214, 231);
-  --navyblue: #314285;
-  --reddy: rgb(250, 6, 6);
-}
+$lightblue: rgb(201, 214, 231);
+$navyblue: #314285;
+$reddy: rgb(250, 6, 6);
 
 * {
   padding: 0;
@@ -21,7 +19,7 @@ body,
 }
 
 .bg {
-  background-color: var(--navyblue);
+  background-color: $navyblue;
 }
 
 button {
@@ -44,7 +42,7 @@ button {
 
 header {
   width: 90%;
-  background-color: var(--lightblue);
+  background-color: $lightblue;
   text-align: center;
   padding: 1%;
   font-weight: bolder;
@@ -66,10 +64,10 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--lightblue);
+  background-color: $lightblue;
   padding: 1%;
   width: 100%;
-  border: 5px solid var(--reddy);
+  border: 5px solid $reddy;
   border-radius: 5px;
 }
 
@@ -100,6 +98,22 @@ input {
   max-width: 80%;
   outline: none;
   margin-bottom: 2%;
+
+  &:checked + .slider {
+    background-image: linear-gradient(to bottom, white 33.3%, blue 33.3%, blue 66.6%, red 66.6%);
+  }
+
+  &:checked + .slider:before {
+    background-image: linear-gradient(to bottom, red 33.3%, white 33.3%, white 66.6%, green 66.6%);
+  }
+
+  &:focus + .slider {
+    box-shadow: 0 0 1px #041c30;
+  }
+
+  &:checked + .slider:before {
+    transform: translateX(26px);
+  }
 }
 
 .keyboard {
@@ -120,7 +134,7 @@ input {
 }
 
 .upper-right {
-  background-color: var(--reddy);
+  background-color: $reddy;
   box-shadow: 8px 8px 5px 0px rgba(50, 50, 50, 0.75);
   padding: 1%;
   width: 50%;
@@ -132,6 +146,11 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  label {
+    font-weight: bolder;
+    text-align: center;
+  }
 }
 
 .switch {
@@ -141,12 +160,12 @@ input {
   display: inline-block;
   width: 60px;
   height: 34px;
-}
 
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
 }
 
 .slider {
@@ -160,43 +179,22 @@ input {
   background-image: linear-gradient(to bottom, red 33.3%, white 33.3%, white 66.6%, green 66.6%);
   border-radius: 2px;
   transition: 1s;
-}
 
-.slider:before {
-  z-index: 0;
-  position: absolute;
-  content: '';
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-image: linear-gradient(to bottom, white 33.3%, blue 33.3%, blue 66.6%, red 66.6%);
-  transition: 0.7s;
-}
+  &:before {
+    z-index: 0;
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-image: linear-gradient(to bottom, white 33.3%, blue 33.3%, blue 66.6%, red 66.6%);
+    transition: 0.7s;
+  }
 
-input:checked + .slider {
-  background-image: linear-gradient(to bottom, white 33.3%, blue 33.3%, blue 66.6%, red 66.6%);
-}
-
-input:checked + .slider:before {
-  background-image: linear-gradient(to bottom, red 33.3%, white 33.3%, white 66.6%, green 66.6%);
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #041c30;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-.toggle-holder label {
-  font-weight: bolder;
-  text-align: center;
-}
-
-.slider.round:before {
-  border-radius: 50%;
+  &.round:before {
+    border-radius: 50%;
+  }
 }
 
 .lower-parts {
@@ -204,25 +202,48 @@ input:checked + .slider:before {
   justify-content: center;
   width: 90%;
   height: 100%;
+
+  &:nth-child(1) article {
+    width: 100%;
+  }
 }
 
 article {
   border-radius: 2px;
   padding: 0% 0% 2% 0%;
-  background-color: var(--navyblue);
-}
+  background-color: $navyblue;
 
-article > ul {
-  display: flex;
-  justify-content: center;
-}
+  div {
+    background-color: $lightblue;
+    text-align: center;
+    padding: 1%;
+    border-radius: 2px;
+  }
 
-article .results-div {
-  border-bottom: 1px solid var(--reddy);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  > ul {
+    display: flex;
+    justify-content: center;
+  }
+
+  .results-div {
+    border-bottom: 1px solid $reddy;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  li {
+    cursor: pointer;
+    width: 50%;
+    margin: 1%;
+    padding: 1%;
+    background-color: $lightblue;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .label-div {
@@ -230,22 +251,15 @@ article .results-div {
   width: 10%;
   display: flex;
   justify-content: space-between;
-}
+  label {
+    color: $navyblue;
+    font-weight: bold;
+  }
 
-.label-div label {
-  color: var(--navyblue);
-  font-weight: bold;
-}
-
-article div {
-  background-color: var(--lightblue);
-  text-align: center;
-  padding: 1%;
-  border-radius: 2px;
-}
-
-.lower-parts:nth-child(1) article {
-  width: 100%;
+  li:active {
+    transition: 0.5s ease;
+    background-color: rgba(50, 50, 50, 0.75);
+  }
 }
 
 h4 {
@@ -254,25 +268,8 @@ h4 {
   align-items: center;
   padding: 0% 1% 1% 1%;
   margin-bottom: 1%;
-  background-color: var(--lightblue);
+  background-color: $lightblue;
   border-radius: 2px;
-}
-
-article li {
-  cursor: pointer;
-  width: 50%;
-  margin: 1%;
-  padding: 1%;
-  background-color: var(--lightblue);
-  border-radius: 2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-article li:active {
-  transition: 0.5s ease;
-  background-color: rgba(50, 50, 50, 0.75);
 }
 
 .details {
@@ -287,31 +284,31 @@ article li:active {
   max-height: 98%;
   max-width: 100%;
   transform: translate(-50%, -50%);
-  background-color: var(--navyblue);
-  border: 2px solid var(--reddy);
+  background-color: $navyblue;
+  border: 2px solid $reddy;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
 
-.details button {
-  align-self: flex-end;
-  justify-self: flex-start;
-  font-weight: bolder;
-  background-color: transparent;
-  color: var(--reddy);
-  padding: 0.5%;
-  border: none;
-  outline: none;
-}
+  button {
+    align-self: flex-end;
+    justify-self: flex-start;
+    font-weight: bolder;
+    background-color: transparent;
+    color: $reddy;
+    padding: 0.5%;
+    border: none;
+    outline: none;
+  }
 
-.details button:hover {
-  color: var(--lightblue);
-}
+  button:hover {
+    color: $lightblue;
+  }
 
-.details button:active {
-  filter: brightness(120%);
+  button:active {
+    filter: brightness(120%);
+  }
 }
 
 .table-div {
@@ -321,30 +318,30 @@ article li:active {
   flex-direction: column;
   padding: 2%;
   height: 100%;
-}
 
-.table-div h4 {
-  height: 5%;
+  h4 {
+    height: 5%;
+  }
 }
 
 table {
-  background-color: var(--lightblue);
+  background-color: $lightblue;
   display: flex;
   justify-content: center;
   height: 10%;
-}
 
-table * {
-  padding: 1%;
-  font-size: 0.95rem;
+  * {
+    padding: 1%;
+    font-size: 0.95rem;
+  }
 }
 
 th {
-  color: var(--lightblue);
-  background-color: var(--navyblue);
+  color: $lightblue;
+  background-color: $navyblue;
   border-radius: 2px;
-  border-left: 1.5px solid var(--reddy);
-  border-right: 1.5px solid var(--reddy);
+  border-left: 1.5px solid $reddy;
+  border-right: 1.5px solid $reddy;
 }
 
 td,
@@ -359,7 +356,7 @@ footer {
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: var(--lightblue);
+  background-color: $lightblue;
   font-weight: bolder;
 }
 
