@@ -11,7 +11,7 @@ def dict_reader(path, ord):
             ls = l[:len(l) - 1]
             arr = ls.split(';')
             row_obj = {ord[0]: arr[0], ord[1]: arr[1], 'pos': arr[2]}
-            if len(arr) > 3:
+            if arr[3] != '!':
                 row_obj['gender'] = arr[3]
             dict.append(row_obj)
         file.close()
@@ -30,6 +30,7 @@ def db_filler(dict_obj, dict_name):
         print('Success!')
     except:
         print('Wrong database name, or other error occured.')
+
 
 # Excecute data load to DB
 # db_filler(dict_reader('./data/ru.txt', ['RU', 'HU']), 'RU')
