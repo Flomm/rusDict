@@ -1,4 +1,5 @@
 export const ResultHolderLi = (props) => {
+  const genderData = props.data.gender ? <span>Nem: {props.data.gender}</span> : <span> </span>;
   return (
     <li
       data={props.data}
@@ -7,18 +8,16 @@ export const ResultHolderLi = (props) => {
       }}
     >
       <p>
-        <span>
-          <strong>{props.data.RU}</strong>
+        <span className="ru">
+          RU: <strong>{props.data.RU}</strong>
         </span>
-        <span>{props.data.HU}</span>
+        <span className="hu">
+          HU: <strong>{props.data.HU}</strong>
+        </span>
       </p>
-      {props.data.gender && (
-        <p>
-          <span>Nem: {props.data.gender}</span>
-        </p>
-      )}
       <p>
         <span>Szófaj: {props.data.pos}</span>
+        {genderData}
       </p>
     </li>
   );

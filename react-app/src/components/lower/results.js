@@ -7,7 +7,11 @@ export const ResultsArticle = (props) => {
   function renderResults(results) {
     return results.map((result, i) => {
       if (result.message) {
-        return <div key={`key${i}`}>{result.message}</div>;
+        return (
+          <div key={`key${i}`} className="errorous">
+            {result.message}
+          </div>
+        );
       }
       return <ResultHolderLi key={`key${i}`} handleClick={props.handleClick} data={result}></ResultHolderLi>;
     });
