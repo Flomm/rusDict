@@ -31,6 +31,6 @@ def db_filler(dict_obj, dict_name):
     except:
         print('Wrong database name, or other error occured.')
 
-
-db_filler(dict_reader('./data/ru.txt', ['RU', 'HU']), 'RU')
-db_filler(dict_reader('./data/hu.txt', ['HU', 'RU']), 'HU')
+# Excecute data load to DB
+# db_filler(dict_reader('./data/ru.txt', ['RU', 'HU']), 'RU')
+# db_filler(dict_reader('./data/hu.txt', ['HU', 'RU']), 'HU')
