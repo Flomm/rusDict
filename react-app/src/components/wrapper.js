@@ -2,7 +2,7 @@ import React from 'react';
 import { globalStateContext } from './context';
 import { Upper } from './upper/upperMain';
 import { Lower } from './lower/lowerMain';
-import { DetailsArticle } from './lower/details';
+import { DetailsArticle } from './details';
 import { useState, useContext } from 'react';
 import { parseHTML } from '../supportFuncsAndObjects/parser';
 
@@ -39,9 +39,10 @@ export const Wrapper = () => {
       }
       const newTable = parseHTML(parsed);
       setTable(newTable);
-      setShadiness('shady');
     } catch (err) {
-      setTable(err.message);
+      setTable({ message: err.message });
+    } finally {
+      setShadiness('shady');
     }
   }
 
@@ -68,7 +69,6 @@ export const Wrapper = () => {
         <header>Orosz-magyar, magyar-orosz szótár</header>
         <Upper onsubmit={handleSubmit} />
         <Lower callResult={callResult} data={table} handleClick={handleResClick} />
-        <footer>Some random text</footer>
       </div>
     </div>
   );
