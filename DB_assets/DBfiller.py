@@ -30,3 +30,7 @@ def db_filler(dict_obj, dict_name):
         print('Success!')
     except:
         print('Wrong database name, or other error occured.')
+
+
+db_filler(dict_reader('./data/ru.txt', ['RU', 'HU']), 'RU')
+db_filler(dict_reader('./data/hu.txt', ['HU', 'RU']), 'HU')
