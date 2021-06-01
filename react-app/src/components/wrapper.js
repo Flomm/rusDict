@@ -12,21 +12,28 @@ export const Wrapper = () => {
   const [shadiness, setShadiness] = useState('');
   const queryDetails = useContext(globalStateContext);
 
-  async function handleSubmit(ev) {
+  async function handleSubmit(ev, queryWord) {
     try {
       ev.preventDefault();
-      const newWord = ev.target.elements[0].value;
-      const queryObject = { word: newWord, ...queryDetails };
+      const newResult = await fetchWords(queryWord);
+      setCallResult(newResult);
+    } catch (err) {
+      setCallResult([{ message: err.message }]);
+    }
+  }
+
+  async function fetchWords(word) {
+    try {
       const response = await fetch(
-        `http://127.0.0.1:5000/api/${queryObject.lang.slice(0, 2)}/${queryObject.word}/${queryObject.lim}`
+        `http://127.0.0.1:5000/api/${queryDetails.lang.slice(0, 2)}/${word}/${queryDetails.lim}`
       );
       const parsed = await response.json();
       if (!response.ok) {
         throw new Error(parsed.error);
       }
-      setCallResult(parsed.result);
+      return parsed.result;
     } catch (err) {
-      setCallResult([{ message: err.message }]);
+      throw err;
     }
   }
 

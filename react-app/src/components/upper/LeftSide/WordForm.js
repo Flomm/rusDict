@@ -6,7 +6,6 @@ export default class WordForm extends React.Component {
     super(props);
     this.state = {
       value: '',
-      pair: this.props.pair,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleType = this.handleType.bind(this);
@@ -35,7 +34,7 @@ export default class WordForm extends React.Component {
       <div className="input-holder">
         <form
           onSubmit={(ev) => {
-            this.props.onsubmit(ev);
+            this.props.onsubmit(ev, this.state.value);
             this.setState({ value: '' });
           }}
         >
