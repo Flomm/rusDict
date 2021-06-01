@@ -1,39 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { globalStateContext } from './context';
 import { Upper } from './upper/upperMain';
-import { Lower } from './lower/lowerMain';
 import { DetailsArticle } from './details';
+import { ResultsArticle } from './results/results';
 import { useState, useContext } from 'react';
 import { parseHTML } from '../supportFuncsAndObjects/parser';
 
 export const Wrapper = () => {
   const [callResult, setCallResult] = useState([]);
+  const [queryWord, setQueryWord] = useState('');
   const [table, setTable] = useState('');
   const [shadiness, setShadiness] = useState('');
   const queryDetails = useContext(globalStateContext);
+  const setRemoteCall = (data) => {
+    setCallResult(data);
+  };
+  useEffect(() => {
+    setRemoteCall(callResult);
+  }, []);
 
-  async function handleSubmit(ev, queryWord) {
+  async function handleSubmit(ev, newQueryWord) {
     try {
       ev.preventDefault();
-      const newResult = await fetchWords(queryWord);
-      setCallResult(newResult);
-    } catch (err) {
-      setCallResult([{ message: err.message }]);
-    }
-  }
-
-  async function fetchWords(word) {
-    try {
+      setQueryWord(newQueryWord);
       const response = await fetch(
-        `http://127.0.0.1:5000/api/${queryDetails.lang.slice(0, 2)}/${word}/${queryDetails.lim}`
+        `http://127.0.0.1:5000/api/${queryDetails.lang.slice(0, 2)}/${newQueryWord}/${queryDetails.lim}`
       );
       const parsed = await response.json();
       if (!response.ok) {
         throw new Error(parsed.error);
       }
-      return parsed.result;
+      setRemoteCall(parsed.result);
     } catch (err) {
-      throw err;
+      setRemoteCall([{ message: err.message }]);
     }
   }
 
@@ -75,7 +74,16 @@ export const Wrapper = () => {
       <div className={`wrapper ${shadiness}`}>
         <header>Orosz-magyar, magyar-orosz szótár</header>
         <Upper onsubmit={handleSubmit} />
-        <Lower callResult={callResult} data={table} handleClick={handleResClick} />
+        <div className="main lower">
+          <div className="lower holder">
+            <ResultsArticle
+              handleFetch={handleSubmit}
+              queryWord={queryWord}
+              callResult={callResult}
+              handleClick={handleResClick}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

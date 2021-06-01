@@ -13,24 +13,32 @@ export const ResultsArticle = (props) => {
           </div>
         );
       }
-      return <ResultHolderLi key={`key${i}`} handleClick={props.handleClick} data={result}></ResultHolderLi>;
+      return (
+        <ResultHolderLi
+          key={`key${i}`}
+          lang={state.lang.slice(0, 2)}
+          handleClick={props.handleClick}
+          data={result}
+        ></ResultHolderLi>
+      );
     });
   }
 
   function renderList() {
     if (props.callResult.length) {
-      let resultList = <ul></ul>;
-      resultList = <ul>{renderResults(props.callResult)}</ul>;
-      return resultList;
+      return <ul>{renderResults(props.callResult)}</ul>;
     }
   }
 
-  function handleSelect(val) {
-    dispatch({ lim: val });
+  function handleSelect(e) {
+    dispatch({ lim: e.target.value });
+    if (props.queryWord) {
+      props.handleFetch(e, props.queryWord);
+    }
   }
 
   if (state.error) {
-    dispatch({ lim: 0 });
+    dispatch({ lim: '5' });
   }
 
   return (
@@ -41,7 +49,7 @@ export const ResultsArticle = (props) => {
           <label>Limit:</label>
           <select
             onChange={(e) => {
-              handleSelect(parseInt(e.target.value));
+              handleSelect(e);
             }}
           >
             <option value="5">5</option>

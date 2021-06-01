@@ -1,5 +1,6 @@
 export const ResultHolderLi = (props) => {
   const genderData = props.data.gender ? <span>Nem: {props.data.gender}</span> : <span> </span>;
+
   return (
     <li
       data={props.data}
@@ -8,10 +9,10 @@ export const ResultHolderLi = (props) => {
       }}
     >
       <p>
-        <span className="ru">
+        <span className="up">
           <span></span> <strong>{props.data.RU}</strong>
         </span>
-        <span className="hu">
+        <span className="down">
           <span></span> <strong>{props.data.HU}</strong>
         </span>
       </p>
