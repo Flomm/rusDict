@@ -9,10 +9,10 @@ export const ResultHolderLi = (props) => {
     >
       <p>
         <span className="ru">
-          RU: <strong>{props.data.RU}</strong>
+          <span></span> <strong>{props.data.RU}</strong>
         </span>
         <span className="hu">
-          HU: <strong>{props.data.HU}</strong>
+          <span></span> <strong>{props.data.HU}</strong>
         </span>
       </p>
       <p>
