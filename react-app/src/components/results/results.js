@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGlobState } from '../context';
 import { ResultListItem } from './resultListItem';
 
@@ -31,9 +31,10 @@ export const ResultsArticle = (props) => {
   }
 
   function handleSelect(e) {
-    dispatch({ lim: e.target.value });
+    const newLimit = e.target.value;
+    dispatch({ lim: newLimit });
     if (props.queryWord) {
-      props.handleFetch(e, props.queryWord);
+      props.handleFetch(e, props.queryWord, newLimit);
     }
   }
 

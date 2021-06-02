@@ -19,12 +19,12 @@ export const Wrapper = () => {
     setRemoteCall(callResult);
   }, []);
 
-  async function handleSubmit(ev, newQueryWord) {
+  async function handleSubmit(ev, newQueryWord, limit) {
     try {
       ev.preventDefault();
       setQueryWord(newQueryWord);
       const response = await fetch(
-        `http://127.0.0.1:5000/api/${queryDetails.lang.slice(0, 2)}/${newQueryWord}/${queryDetails.lim}`
+        `http://127.0.0.1:5000/api/${queryDetails.lang.slice(0, 2)}/${newQueryWord}/${limit}`
       );
       const parsed = await response.json();
       if (!response.ok) {
