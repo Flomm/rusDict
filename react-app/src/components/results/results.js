@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGlobState } from '../context';
-import { ResultHolderLi } from './resultHolderLi';
+import { ResultListItem } from './resultListItem';
 
 export const ResultsArticle = (props) => {
   const [state, dispatch] = useGlobState();
@@ -14,12 +14,12 @@ export const ResultsArticle = (props) => {
         );
       }
       return (
-        <ResultHolderLi
+        <ResultListItem
           key={`key${i}`}
           lang={state.lang.slice(0, 2)}
           handleClick={props.handleClick}
           data={result}
-        ></ResultHolderLi>
+        ></ResultListItem>
       );
     });
   }

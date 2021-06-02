@@ -1,4 +1,4 @@
-export const ResultHolderLi = (props) => {
+export const ResultListItem = (props) => {
   const genderData = props.data.gender ? <span>Nem: {props.data.gender}</span> : <span> </span>;
 
   return (
