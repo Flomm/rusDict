@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { globalStateContext } from './context';
 import { Upper } from './upper/upperMain';
 import { DetailsArticle } from './details';
 import { ResultsArticle } from './results/results';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { parseHTML } from '../supportFuncsAndObjects/parser';
 
 export const Wrapper = () => {
@@ -11,7 +10,6 @@ export const Wrapper = () => {
   const [queryWord, setQueryWord] = useState('');
   const [table, setTable] = useState('');
   const [shadiness, setShadiness] = useState('');
-  const queryDetails = useContext(globalStateContext);
   const setRemoteCall = (data) => {
     setCallResult(data);
   };
@@ -23,16 +21,19 @@ export const Wrapper = () => {
     try {
       ev.preventDefault();
       setQueryWord(newQueryWord);
-      const response = await fetch(
-        `http://127.0.0.1:5000/api/${queryDetails.lang.slice(0, 2)}/${newQueryWord}/${limit}`
-      );
+      const response = await fetch(`http://127.0.0.1:5000/api/dict/${newQueryWord}/${limit}`);
       const parsed = await response.json();
       if (!response.ok) {
         throw new Error(parsed.error);
       }
       setRemoteCall(parsed.result);
     } catch (err) {
-      setRemoteCall([{ message: err.message }]);
+      console.log(err);
+      if (err instanceof TypeError) {
+        setRemoteCall([{ message: 'Hopsz. Szerver hiba történt. Kérlek próbáld újra később.' }]);
+      } else {
+        setRemoteCall([{ message: err.message }]);
+      }
     }
   }
 

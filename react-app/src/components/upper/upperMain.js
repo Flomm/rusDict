@@ -1,31 +1,23 @@
 import { useState } from 'react';
 import WordForm from './LeftSide/WordForm';
-import { useGlobState } from '../context';
 import { Switch } from './switch';
 
 export const Upper = (props) => {
-  const [pair, setPair] = useState('RUS-HU');
-  const [state, dispatch] = useGlobState();
+  const [keyType, setKeyType] = useState('RU');
 
   function handleChange() {
-    let newPair = '';
-    pair === 'RUS-HU' ? (newPair = 'HU-RUS') : (newPair = 'RUS-HU');
-    setPair(newPair);
-    dispatch({ lang: newPair });
-  }
-
-  if (state.error) {
-    dispatch({ lang: 'error' });
+    const newKeyType = keyType === 'RU' ? 'HU' : 'RU';
+    setKeyType(newKeyType);
   }
 
   return (
     <div className="main upper">
       <div className="upper holder">
         <div className="upper-left">
-          <WordForm onsubmit={props.onsubmit} />
+          <WordForm keyType={keyType} onsubmit={props.onsubmit} />
         </div>
         <div>
-          <Switch pair={pair} handleChange={handleChange} />
+          <Switch handleChange={handleChange} />
         </div>
       </div>
     </div>
