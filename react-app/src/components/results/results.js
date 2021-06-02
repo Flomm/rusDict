@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useGlobState } from '../context';
 import { ResultListItem } from './resultListItem';
 
@@ -16,7 +16,6 @@ export const ResultsArticle = (props) => {
       return (
         <ResultListItem
           key={`key${i}`}
-          lang={state.lang.slice(0, 2)}
           handleClick={props.handleClick}
           data={result}
         ></ResultListItem>

@@ -1,7 +1,6 @@
 import React from 'react';
 
 const defaultGlobalState = {
-  lang: 'RUS-HU',
   lim: 5,
 };
 
