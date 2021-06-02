@@ -1,5 +1,6 @@
 import os
 import pymongo
+import re
 from flask import Flask, render_template, make_response, json
 from flask_cors import CORS
 
@@ -13,6 +14,10 @@ class APIError(Exception):
     message = Exception.args
     code = 404
     pass
+
+
+def has_cyrillic(text):
+    return bool(re.search('[а-яА-Я]', text))
 
 
 def is_integer(n):
@@ -51,31 +56,24 @@ def index():
     return render_template("index.html", flask_token="Hello world")
 
 
-@app.route('/api/RU/<word>/<limit>')
+@app.route('/api/dict/<word>/<limit>')
 def getRU(word, limit):
     if not are_params_okay(word, limit):
         raise APIError(
             'Hopsz. Úgy tűnik rossz paramétereket adtál meg. Próbáld újra.')
-    result = list(cluster.RU.find(
-        {'RU': {'$regex': f'.*{word}.*'}}, {'_id': 0}).limit(int(limit)))
+    if has_cyrillic(word):
+        collString = 'RU'
+        collection = cluster.RU
+    else:
+        collString = 'HU'
+        collection = cluster.HU
+    result = list(collection.find(
+        {f'{collString}': {'$regex': f'.*{word}.*'}}, {'_id': 0}).limit(int(limit)))
     if len(result) < 1:
         raise APIError(
             'Hopsz. Sajnos ez a szó még nem szerepel az adatbázisunkban, vagy nem létezik.')
     response = json.jsonify({'result': result})
     return response
-
-
-@app.route('/api/HU/<word>/<limit>')
-def getHU(word, limit):
-    if not are_params_okay(word, limit):
-        raise APIError(
-            'Hopsz. Úgy tűnik rossz paramétereket adtál meg. Próbáld újra.')
-    response = list(cluster.HU.find(
-        {'HU': {'$regex': f'.*{word}.*'}}, {'_id': 0}).limit(int(limit)))
-    if len(response) < 1:
-        raise APIError(
-            'Hopsz. Sajnos ez a szó még nem szerepel az adatbázisunkban, vagy nem létezik.')
-    return {'result': response}
 
 
 if __name__ == "__main__":
