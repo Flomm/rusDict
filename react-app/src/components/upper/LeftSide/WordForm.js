@@ -1,7 +1,10 @@
 import React from 'react';
 import Keyboard from './Keyboard';
+import { globalStateContext } from '../../context';
 
 export default class WordForm extends React.Component {
+  static contextType = globalStateContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -29,12 +32,13 @@ export default class WordForm extends React.Component {
   componentDidUpdate() {
     this._input.focus();
   }
+
   render() {
     return (
       <div className="input-holder">
         <form
           onSubmit={(ev) => {
-            this.props.onsubmit(ev, this.state.value);
+            this.props.onsubmit(ev, this.state.value, this.context.lim);
             this.setState({ value: '' });
           }}
         >
