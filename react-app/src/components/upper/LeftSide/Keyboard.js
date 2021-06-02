@@ -1,13 +1,17 @@
 import React from 'react';
-import { abc } from '../../../supportFuncsAndObjects/abc';
 import Key from './Key';
 
 export default class Keyboard extends React.Component {
+  abcRU = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя^<_';
+  abcHU = 'aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz^<_';
+
   constructor(props) {
     super(props);
     this.state = {
       case: 'lower',
     };
+    this.abcHU = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя^<_';
+    this.abcHU = 'aábcdeéfghijklmnoóöőpqrstuúüűvwxyz^<_';
     this.handleCase = this.handleCase.bind(this);
   }
 
@@ -62,6 +66,8 @@ export default class Keyboard extends React.Component {
   }
 
   render() {
+    let abc;
+    this.props.keyType === 'RU' ? (abc = this.abcRU) : (abc = this.abcHU);
     const keyboardRu = this.renderKeys(abc);
     const specialKeys = this.renderSpecialKeys(abc);
     return (

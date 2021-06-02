@@ -52,7 +52,7 @@ export default class WordForm extends React.Component {
           ></input>
           <button>Keresés</button>
         </form>
-        <Keyboard onType={this.handleType} onDelete={this.handleDelete} />
+        <Keyboard keyType={this.props.keyType} onType={this.handleType} onDelete={this.handleDelete} />
       </div>
     );
   }
