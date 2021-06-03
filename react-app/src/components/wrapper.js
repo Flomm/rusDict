@@ -14,7 +14,7 @@ export const Wrapper = () => {
   };
   useEffect(() => {
     setRemoteCall(callResult);
-  }, []);
+  }, [callResult]);
 
   async function handleSubmit(ev, newQueryWord, limit) {
     try {
@@ -27,7 +27,6 @@ export const Wrapper = () => {
       }
       setRemoteCall(parsed.result);
     } catch (err) {
-      console.log(err);
       if (err instanceof TypeError) {
         setRemoteCall([{ message: 'Hopsz. Szerver hiba történt. Kérlek próbáld újra később.' }]);
       } else {

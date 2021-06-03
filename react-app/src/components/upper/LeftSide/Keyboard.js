@@ -10,8 +10,6 @@ export default class Keyboard extends React.Component {
     this.state = {
       case: 'lower',
     };
-    this.abcHU = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя^<_';
-    this.abcHU = 'aábcdeéfghijklmnoóöőpqrstuúüűvwxyz^<_';
     this.handleCase = this.handleCase.bind(this);
   }
 
