@@ -16,9 +16,17 @@ $flagShadow: 0px 0px 7px -2px #000000;
 }
 
 html,
-body,
-#root {
+body {
   height: 100%;
+}
+
+#root,
+.bg {
+  height: 100%;
+}
+
+.bg {
+  background-color: $backG;
 }
 
 button,
@@ -28,7 +36,7 @@ select {
 
 .wrapper {
   height: 100%;
-  background-color: $backG;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -491,5 +499,9 @@ table {
     .main.lower {
       height: 70%;
     }
+  }
+
+  li {
+    pointer-events: none;
   }
 }
