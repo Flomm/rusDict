@@ -16,17 +16,9 @@ $flagShadow: 0px 0px 7px -2px #000000;
 }
 
 html,
-body {
-  height: 100vh;
-}
-
-#root,
-.bg {
+body,
+#root {
   height: 100%;
-}
-
-.bg {
-  background-color: $backG;
 }
 
 button,
@@ -36,7 +28,7 @@ select {
 
 .wrapper {
   height: 100%;
-  background-color: transparent;
+  background-color: $backG;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -444,6 +436,60 @@ table {
     * {
       padding: 1%;
       font-size: 0.6rem;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .toggle-holder {
+      display: none;
+    }
+  }
+
+  @media screen and (max-height: 450px) {
+    .main.upper {
+      display: none;
+    }
+
+    .main.lower {
+      height: 90%;
+    }
+  }
+
+  @media screen and (max-width: 220px) {
+    .wrapper {
+      * {
+        display: none;
+      }
+    }
+  }
+
+  @media (hover: none) {
+    form {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    input {
+      margin: 0px 5px 0px 0px;
+      width: 250px;
+      height: 30px;
+    }
+
+    article {
+      width: 100%;
+    }
+
+    .keyboard {
+      display: none;
+    }
+
+    .main.main.upper {
+      height: 10%;
+    }
+
+    .main.lower {
+      height: 70%;
     }
   }
 }

@@ -70,20 +70,18 @@ export const Wrapper = () => {
   }
 
   return (
-    <div className="bg">
+    <div className={`wrapper ${shadiness}`}>
       {renderTable()}
-      <div className={`wrapper ${shadiness}`}>
-        <header>Orosz-magyar, magyar-orosz szótár</header>
-        <Upper onsubmit={handleSubmit} />
-        <div className="main lower">
-          <div className="lower holder">
-            <ResultsArticle
-              handleFetch={handleSubmit}
-              queryWord={queryWord}
-              callResult={callResult}
-              handleClick={handleResClick}
-            />
-          </div>
+      <header>Orosz-magyar, magyar-orosz szótár</header>
+      <Upper onsubmit={handleSubmit} />
+      <div className="main lower">
+        <div className="lower holder">
+          <ResultsArticle
+            handleFetch={handleSubmit}
+            queryWord={queryWord}
+            callResult={callResult}
+            handleClick={handleResClick}
+          />
         </div>
       </div>
     </div>
