@@ -2,6 +2,7 @@ import React from 'react';
 
 const defaultGlobalState = {
   lim: 5,
+  isMobile: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent),
 };
 
 export const globalStateContext = React.createContext(defaultGlobalState);

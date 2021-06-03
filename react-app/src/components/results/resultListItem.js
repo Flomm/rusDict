@@ -1,11 +1,16 @@
+import { globalStateContext } from '../context';
+
 export const ResultListItem = (props) => {
+  const globalState = globalStateContext;
   const genderData = props.data.gender ? <span>Nem: {props.data.gender}</span> : <span> </span>;
 
   return (
     <li
       data={props.data}
       onClick={() => {
-        props.handleClick(props.data.RU);
+        if (!globalState.isMobile) {
+          props.handleClick(props.data.RU);
+        }
       }}
     >
       <p>

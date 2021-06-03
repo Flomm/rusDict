@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Upper } from './upper/upperMain';
 import { DetailsArticle } from './details';
 import { ResultsArticle } from './results/results';
-import { useState } from 'react';
 import { parseHTML } from '../supportFuncsAndObjects/parser';
 
 export const Wrapper = () => {
@@ -70,18 +69,20 @@ export const Wrapper = () => {
   }
 
   return (
-    <div className={`wrapper ${shadiness}`}>
+    <div className="bg">
       {renderTable()}
-      <header>Orosz-magyar, magyar-orosz szótár</header>
-      <Upper onsubmit={handleSubmit} />
-      <div className="main lower">
-        <div className="lower holder">
-          <ResultsArticle
-            handleFetch={handleSubmit}
-            queryWord={queryWord}
-            callResult={callResult}
-            handleClick={handleResClick}
-          />
+      <div className={`wrapper ${shadiness}`}>
+        <header>Orosz-magyar, magyar-orosz szótár</header>
+        <Upper onsubmit={handleSubmit} />
+        <div className="main lower">
+          <div className="lower holder">
+            <ResultsArticle
+              handleFetch={handleSubmit}
+              queryWord={queryWord}
+              callResult={callResult}
+              handleClick={handleResClick}
+            />
+          </div>
         </div>
       </div>
     </div>

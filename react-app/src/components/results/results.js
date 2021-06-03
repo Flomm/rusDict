@@ -4,6 +4,7 @@ import { ResultListItem } from './resultListItem';
 
 export const ResultsArticle = (props) => {
   const [state, dispatch] = useGlobState();
+  
   function renderResults(results) {
     return results.map((result, i) => {
       if (result.message) {
@@ -13,13 +14,7 @@ export const ResultsArticle = (props) => {
           </div>
         );
       }
-      return (
-        <ResultListItem
-          key={`key${i}`}
-          handleClick={props.handleClick}
-          data={result}
-        ></ResultListItem>
-      );
+      return <ResultListItem key={`key${i}`} handleClick={props.handleClick} data={result}></ResultListItem>;
     });
   }
 
