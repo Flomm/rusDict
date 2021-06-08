@@ -28,3 +28,6 @@ planlog.txt
 __pycache__/
 *.py[cod]
 *$py.class
+/flask-server/Lib
+/flask-server/Scripts
+/flask-server/pyvenv.cfg
