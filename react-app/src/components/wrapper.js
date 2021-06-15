@@ -23,14 +23,16 @@ export const Wrapper = () => {
       const response = await fetch(`http://127.0.0.1:5000/api/dict/${newQueryWord}/${limit}`);
       const parsed = await response.json();
       if (!response.ok) {
-        throw new Error(parsed.error);
+        throw new URIError(parsed.error);
       }
       setRemoteCall(parsed.result);
     } catch (err) {
       if (err instanceof TypeError) {
         setRemoteCall([{ message: 'Hopsz. Szerver hiba történt. Kérlek próbáld újra később.' }]);
-      } else {
+      } else if (err instanceof URIError) {
         setRemoteCall([{ message: err.message }]);
+      } else {
+        setRemoteCall([{ message: 'Hopsz. Ismeretlen hiba történt. Kérlek próbáld újra.' }]);
       }
     }
   }
