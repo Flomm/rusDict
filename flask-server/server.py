@@ -58,17 +58,19 @@ def index():
 
 @app.route('/api/dict/<word>/<limit>')
 def getRU(word, limit):
-    if not are_params_okay(word, limit):
+    lower_case_word = word.lower()
+    print(lower_case_word)
+    if not are_params_okay(lower_case_word, limit):
         raise APIError(
             'Hopsz. Úgy tűnik rossz paramétereket adtál meg. Próbáld újra.')
-    if has_cyrillic(word):
+    if has_cyrillic(lower_case_word):
         collString = 'RU'
         collection = cluster.RU
     else:
         collString = 'HU'
         collection = cluster.HU
     result = list(collection.find(
-        {f'{collString}': {'$regex': f'.*{word}.*'}}, {'_id': 0}).limit(int(limit)))
+        {f'{collString}': {'$regex': f'.*{lower_case_word}.*'}}, {'_id': 0}).limit(int(limit)))
     if len(result) < 1:
         raise APIError(
             'Hopsz. Sajnos ez a szó még nem szerepel az adatbázisunkban, vagy nem létezik.')
