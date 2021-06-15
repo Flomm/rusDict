@@ -1,6 +1,6 @@
 export const Switch = (props) => {
   return (
-    <div className="toggle-holder">
+    <div className="flex-center toggle-holder">
       <label>Válassz billentyűzetet</label>
       <label className="switch">
         <input type="checkbox" onChange={props.handleChange}></input>

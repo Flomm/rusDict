@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-
-$lightblue: rgb(201, 214, 231);
-$navyblue: #314285;
-$reddy: rgb(250, 6, 6);
-$backG: rgba(16, 58, 175, 0.8);
-$ruFlagBG: linear-gradient(to bottom, white 33.3%, blue 33.3%, blue 66.6%, red 66.6%);
-$huFlagBG: linear-gradient(to bottom, red 33.3%, white 33.3%, white 66.6%, green 66.6%);
-$flagShadow: 0px 0px 7px -2px #000000;
+@import './style/variables.scss';
+@import './style/common-classes.scss';
 
 * {
   padding: 0;
@@ -79,9 +73,6 @@ header {
 }
 
 .holder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: $lightblue;
   padding: 1%;
   width: 100%;
@@ -96,19 +87,13 @@ header {
 }
 
 .input-holder {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 1%;
   width: 75%;
 }
 
 form {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 input {
@@ -134,10 +119,8 @@ input {
 }
 
 .keyboard {
-  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center;
 }
 
 .key {
@@ -159,10 +142,7 @@ input {
 }
 
 .toggle-holder {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
   label {
     font-weight: bolder;
@@ -189,10 +169,7 @@ input {
   z-index: 0;
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-image: $huFlagBG;
   border-radius: 2px;
   transition: 1s;
@@ -275,16 +252,14 @@ article {
     }
   }
 
-  li {
+  li.flex-center {
     cursor: pointer;
     width: 50%;
     margin: 1% auto;
     padding: 1%;
     background-color: $lightblue;
     border-radius: 2px;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
 
     p {
       display: flex;
@@ -336,9 +311,6 @@ article {
 }
 
 h4 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 0% 1% 1% 1%;
   margin-bottom: 1%;
   background-color: $lightblue;
@@ -384,9 +356,6 @@ h4 {
 }
 
 .table-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   padding: 2%;
   min-height: 100%;
@@ -474,8 +443,6 @@ table {
   @media (hover: none) {
     form {
       flex-direction: row;
-      justify-content: center;
-      align-items: center;
     }
 
     input {

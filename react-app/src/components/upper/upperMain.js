@@ -12,7 +12,7 @@ export const Upper = (props) => {
 
   return (
     <div className="main upper">
-      <div className="upper holder">
+      <div className="flex-center upper holder">
         <div className="upper-left">
           <WordForm keyType={keyType} onsubmit={props.onsubmit} />
         </div>

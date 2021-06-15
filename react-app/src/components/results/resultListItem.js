@@ -6,6 +6,7 @@ export const ResultListItem = (props) => {
 
   return (
     <li
+      className="flex-center"
       data={props.data}
       onClick={() => {
         if (!globalState.isMobile) {

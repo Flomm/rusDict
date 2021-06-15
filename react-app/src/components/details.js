@@ -11,8 +11,8 @@ export class DetailsArticle extends React.Component {
 
   render() {
     return (
-      <div className="table-div">
-        <h4>Nyelvtani részletek</h4>
+      <div className="flex-center table-div">
+        <h4 className="flex-center">Nyelvtani részletek</h4>
         {this.renderContent()}
       </div>
     );

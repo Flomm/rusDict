@@ -35,8 +35,9 @@ export default class WordForm extends React.Component {
 
   render() {
     return (
-      <div className="input-holder">
+      <div className="flex-center input-holder">
         <form
+          className="flex-center"
           onSubmit={(ev) => {
             this.props.onsubmit(ev, this.state.value, this.context.lim);
             this.setState({ value: '' });

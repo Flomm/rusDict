@@ -69,7 +69,7 @@ export default class Keyboard extends React.Component {
     const keyboardRu = this.renderKeys(abc);
     const specialKeys = this.renderSpecialKeys(abc);
     return (
-      <div className="keyboard">
+      <div className="flex-center keyboard">
         {keyboardRu}
         {specialKeys}
       </div>

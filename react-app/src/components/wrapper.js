@@ -74,7 +74,7 @@ export const Wrapper = () => {
         <header>Orosz-magyar, magyar-orosz szótár</header>
         <Upper onsubmit={handleSubmit} />
         <div className="main lower">
-          <div className="lower holder">
+          <div className="flex-center lower holder">
             <ResultsArticle
               handleFetch={handleSubmit}
               queryWord={queryWord}
